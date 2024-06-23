@@ -1,23 +1,20 @@
-//your JS code here. If required.
+
+
 function secondHighest(arr) {
-    // If array is empty or has only one element, return -Infinity
-    if (arr.length < 2) {
-        return -Infinity;
+    if (arr.length < 2) return -Infinity;
+
+    let highest = -Infinity;
+    let second_highest = -Infinity;
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > highest) {
+            second_highest = highest;
+            highest = arr[i];
+        } else if (arr[i] > second_highest && arr[i] !== highest) {
+            second_highest = arr[i];
+        }
     }
 
-    // Create a set to remove duplicates
-    const uniqueValues = new Set(arr);
-
-    // Convert set back to array and sort in descending order
-    const uniqueArr = Array.from(uniqueValues).sort((a, b) => b - a);
-
-    // If there are less than 2 unique elements, return -Infinity
-    if (uniqueArr.length < 2) {
-        return -Infinity;
-    }
-
-    // Return the second highest element
-    return uniqueArr[1];
+    return second_highest === -Infinity ? -Infinity : second_highest;
 }
-
 
